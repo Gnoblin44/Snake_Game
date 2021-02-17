@@ -16,6 +16,8 @@ stdscr.nodelay(True)
 snake = [(4, 10), (4, 11), (4, 12)]
 food = [10, 30]
 
+stdscr.addch(food[0], food[1], '%')
+
 # game code or game logic
 
 ESC = 27
