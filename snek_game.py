@@ -12,20 +12,30 @@ stdscr.nodelay(True)
 
 
 # snek position n food
-snake = [[-5, 7], [-4, 7], [-6, 7]]
-food = [-10, 10]
+
+snake = [(4, 10), (4, 11), (4, 12)]
+food = [10, 30]
+
+stdscr.addch(food[0], food[1], '%')
 
 # game code or game logic
 
+ESC = 27
+key = curses.KEY_RIGHT
+
 score = 0
 
-while True:
+while key != ESC:
     event = stdscr.getch()
+    stdscr.addstr(0, 0, f'Score {str(score)}' + ' ')
+    stdscr.timout()
 
-    # for p in snake:
-    #     stdscr.addch(p[0], )
+    for i in snake:
+        stdscr.addch(i[0], i[1], '*')
+
+    stdscr.addch(food[0], food[1], '%')
 
 curses.endwin()
-print(f"Your final score: {score}")
+print("Your final score: %s" % score)
 
 
