@@ -3,9 +3,9 @@ import curses
 
 # terminal setup
 curses.initscr()
-stdscr = curses.newwin(20, 60, 0, 0)                                            # y,x
-stdscr.keypad(True)
-curses.noecho()
+stdscr = curses.newwin(20, 60, 0, 0)                                 # y,x
+stdscr.keypad(True)                                                             
+curses.noecho()                                                                 
 curses.curs_set(0)
 stdscr.border(0)
 stdscr.nodelay(True)
@@ -26,12 +26,16 @@ key = curses.KEY_RIGHT
 score = 0
 
 while key != ESC:
+    stdscr.addstr(0, 0, f'Score {str(score)}' + ' ') 
+    stdscr.timout(150 - len(snake)//5 + len(snake)//10 %120)         # increases speed
+    
+    prevKey = key
     event = stdscr.getch()
-    stdscr.addstr(0, 0, f'Score {str(score)}' + ' ')
-    stdscr.timout()
-
+    key = event if event != -1 else prevKey
+    
+    
     for i in snake:
-        stdscr.addch(i[0], i[1], '*')
+        stdscr.addch(i[0], i[1], '-')
 
     stdscr.addch(food[0], food[1], '%')
 
