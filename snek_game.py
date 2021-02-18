@@ -33,6 +33,7 @@ while key != ESC:
     event = stdscr.getch()
     key = event if event != -1 else prevKey
     
+    if key not in [curses.KEY_LEFT, curses.KEY_DOWN, curses.KEY_RIGHT, curses.KEY_UP]
     
     for i in snake:
         stdscr.addch(i[0], i[1], '-')
